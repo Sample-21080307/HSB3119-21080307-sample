@@ -1,606 +1,94 @@
-<!DOCTYPE html>
-<html><head>
-  <title>My Website</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      font-family: sans-serif;
-      background-color: #f2f2f2;
-      background-image: url("binh227.jpg");
-      background-size: cover;
-      background-position: center;
-      transition: background-color 0.5s ease-in-out;
-    }
-
-    .header {
-  background-color: #4a4242;
-  color: #fff;
-  padding: 20px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.header::before {
-  content: "";
-  position: absolute;
-  top: -100%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-}
-
-.header:hover::before {
-  top: 0;
-  opacity: 1;
-}
-
-.header h1 {
-  font-size: 48px;
-  margin: 0;
-  position: relative;
-  z-index: 2;
-  animation: slideInAnimation 1s ease-in-out;
-}
-
-@keyframes slideInAnimation {
-  0% {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.header::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent);
-  pointer-events: none;
-  opacity: 0;
-  z-index: -1;
-  transition: opacity 0.3s ease-in-out;
-}
-
-.header:hover::after {
-  opacity: 1;
-  animation: gradientAnimation 2s linear infinite;
-}
-
-@keyframes gradientAnimation {
-  0% {
-    background-position: 0% 0%;
-  }
-  100% {
-    background-position: -100% 0%;
-  }
-}
-
-
-    .content {
-      max-width: 800px;
-      margin: 50px auto;
-      padding: 20px;
-      background-color: rgba(255, 255, 255, 0.9);
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      transition: box-shadow 0.5s ease-in-out;
-    }
-    .content:hover {
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    }
-
-    .about-me {
-      display: flex;
-      align-items: center;
-      margin-bottom: 30px;
-      transform-style: preserve-3d;
-      animation: flipInAnimation 1s ease-in-out forwards;
-    }
-
-    @keyframes flipInAnimation {
-      0% {
-        opacity: 0;
-        transform: rotateY(90deg);
-      }
-      100% {
-        opacity: 1;
-        transform: rotateY(0);
-      }
-    }
-
-    .about-me img {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      object-fit: cover;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      margin-right: 30px;
-      transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
-    }
-
-    .about-me:hover img {
-      transform: rotateY(180deg);
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    }
-
-    .about-me .text-right {
-      flex: 1;
-      transform: rotateY(-90deg);
-      transform-origin: right center;
-      animation: flipInAnimation 1s ease-in-out forwards;
-    }
-
-    .information {
-      margin-top: 30px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-gap: 20px;
-      transform-style: preserve-3d;
-      animation: flipInAnimation 1s ease-in-out forwards;
-    }
-
-    .information p {
-      font-size: 16px;
-      line-height: 1.5;
-      margin-bottom: 10px;
-    }
-
-    .skills {
-      margin-top: 30px;
-      transform-style: preserve-3d;
-      animation: flipInAnimation 1s ease-in-out forwards;
-    }
-
-    .skills h2 {
-      font-size: 20px;
-      margin-bottom: 10px;
-    }
-
-    .skills table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    .skills th,
-    .skills td {
-      padding: 10px;
-      border: 1px solid #ccc;
-    }
-
-    .skills th {
-      background-color: #f2f2f2;
-      text-align: left;
-    }
-
-    .skills td {
-      text-align: center;
-    }
-
-  .contact-form {
-  margin-top: 30px;
-  text-align: center;
-}
-
-.contact-form h2 {
-  font-size: 24px;
-  margin-bottom: 20px;
-  color: #333;
-}
-
-.contact-form form {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-.contact-form .form-group {
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-.contact-form label {
-  display: block;
-  font-size: 16px;
-  margin-bottom: 10px;
-  color: #666;
-}
-
-.contact-form input,
-.contact-form textarea {
-  width: 100%;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  transition: border-color 0.3s ease-in-out;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-  outline: none;
-  border-color: #555;
-}
-
-.contact-form textarea {
-  resize: vertical;
-}
-
-.contact-form button {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #333;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.contact-form button:hover {
-  background-color: #555;
-}
-
-.contact-form .form-group:last-child {
-  margin-bottom: 0;
-}
-
-.contact-form .form-group::after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-.contact-form .form-group .half-width {
-  width: 50%;
-  float: left;
-  padding-right: 10px;
-}
-
-.contact-form .form-group .half-width:last-child {
-  padding-right: 0;
-}
-
-.contact-form .form-group .full-width {
-  width: 100%;
-}
-
-@media (max-width: 600px) {
-  .contact-form .form-group .half-width {
-    width: 100%;
-    float: none;
-    padding-right: 0;
-  }
-}
-.contact-form {
-  margin-top: 30px;
-  text-align: center;
-  max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.contact-form h2 {
-  font-size: 24px;
-  margin-bottom: 20px;
-  color: #333;
-}
-
-.contact-form form {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-.contact-form .form-group {
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-.contact-form label {
-  display: block;
-  font-size: 16px;
-  margin-bottom: 10px;
-  color: #666;
-}
-
-.contact-form input,
-.contact-form textarea {
-  width: 100%;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  transition: border-color 0.3s ease-in-out;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-  outline: none;
-  border-color: #555;
-}
-
-.contact-form textarea {
-  resize: vertical;
-}
-
-.contact-form button {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #333;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.contact-form button:hover {
-  background-color: #555;
-}
-
-.contact-form .form-group:last-child {
-  margin-bottom: 0;
-}
-
-.contact-form .form-group::after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-.contact-form .form-group .half-width {
-  width: 50%;
-  float: left;
-  padding-right: 10px;
-}
-
-.contact-form .form-group .half-width:last-child {
-  padding-right: 0;
-}
-
-.contact-form .form-group .full-width {
-  width: 100%;
-}
-
-@media (max-width: 600px) {
-  .contact-form .form-group .half-width {
-    width: 100%;
-    float: none;
-    padding-right: 0;
-  }
-}
-
-
-.contact-form button {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #333;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-  opacity: 0;
-  animation: buttonAnimation 1s ease-in-out forwards;
-}
-
-@keyframes buttonAnimation {
-  0% {
-    transform: translateY(50px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-.contact-form button:hover {
-  background-color: #555;
-}
-
-.contact-form .form-group:nth-child(odd) {
-  animation: formFieldAnimationOdd 1s ease-in-out forwards;
-}
-
-@keyframes formFieldAnimationOdd {
-  0% {
-    opacity: 0;
-    transform: translateX(100px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.contact-form .form-group:nth-child(even) {
-  animation: formFieldAnimationEven 1s ease-in-out forwards;
-}
-
-@keyframes formFieldAnimationEven {
-  0% {
-    opacity: 0;
-    transform: translateX(-100px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.contact-form .form-group:nth-child(3n) {
-  animation: formFieldAnimation3n 1s ease-in-out forwards;
-}
-
-@keyframes formFieldAnimation3n {
-  0% {
-    opacity: 0;
-    transform: translateY(-50px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-
-
-    .photo-gallery {
-      margin-top: 30px;
-      text-align: center;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      transform-style: preserve-3d;
-      animation: flipInAnimation 1s ease-in-out forwards;
-    }
-
-    .photo-gallery img {
-      display: inline-block;
-      width: 200px;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      margin: 10px;
-      transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
-      justify-content: center;
-      align-items: center;
-      animation: borderAnimation 3s infinite reverse;
-    }
-
-    .photo-gallery img:hover {
-      transform: rotateY(180deg) scale(1.1);
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    }
-
-    @keyframes flipInAnimation {
-      0% {
-        transform: rotateY(90deg);
-        opacity: 0;
-      }
-      100% {
-        transform: rotateY(0deg);
-        opacity: 1;
-      }
-    }
-.social-links {
-  margin-top: 30px;
-}
-
-.social-links a {
-  display: inline-block;
-  margin-right: 30px;
-}
-
-.social-links img {
-  width: 50px;
-  height: 50px;
-  transition: transform 0.3s ease;
-}
-
-.social-links img:hover {
-  transform: scale(1.2);
-}
-  </style>
-</head>
-<body>
-  <div class="header">
-      <h1>My Page</h1>
-    </div>
-    
-  
-
-  <div class="content">
-    <div class="about-me fade-in">
-      <img src="binh profile.jpg" alt="Your Image" />
-      <div class="text-right">
-        <h2>About Me</h2>
-        <p>Chào tất cả mọi người tôi tên là Trịnh Đức Bình, hiện tại tôi đang sinh sống và học tại trường Quản Trị Kinh Doanh của Đại học Quốc Gia Hà Nội. Hiện tại tôi đang làm thêm tại 1 nhà hàng ở Thái Hà. Sở thích của tôi là chơi thể thao và xem phim. Sau đây là website của bản thân tôi. </p>
-      </div>
-    </div>
-
-    <div class="information fade-in">
-      <h2>Information</h2>
-      <p>Name: Trịnh Đức Bình</p>
-      <p>Age: 20</p>
-	  <p>Date of birth: 22/09/2003
-	  </p><p>Email: dbinh2323@gmail.com</p>
-	  <p>Phone: 0976562288</p>
-      <p>Address: Ha Noi</p>
-    </div>
-
-    <div class="skills fade-in">
-      <h2>Skills</h2>
-      <table>
-        <tbody><tr>
-          <th>Skill</th>
-          <th>Description</th>
-        </tr>
-        <tr>
-          <td>Kĩ năng giao tiếp với người nước ngoài</td>
-          <td>Tiếng anh hiện nay đang là một trong những ngôn ngữ rất phổ biến và cần thiết trong công việc cũng như là đời sống.Với tấm bằng ielts 6.5 thì tôi có thể giao tiếp với người nước ngoài một cách tự nhiên và có thể nói là theo cách cơ bản nhất</td>
-        </tr>
-        <tr>
-          <td>Kỹ năng quản lý thời gian</td>
-          <td>Thời gian chính là một thứ vô cùng quý giá, một khi đã trôi qua thì sẽ không thể lấy lại được. Đối vơi tôi việc quản lí thời gian rất quan trọng,nó giúp tôi kiểm soát được nhiều thứ và hoàn thành được nhiều việc. Vậy nên tôi luôn tìm cách phân bổ một cách đúng nhất và luôn đến đúng giờ những lúc quan trọng.</td>
-        </tr>
-        <tr>
-          <td>Kỹ năng giải quyết vấn đề</td>
-          <td>Cuộc sống, công việc mỗi ngày có rất nhiều tình huống bất ngờ xảy ra. Để có thể giải quyết êm đẹp,tôi có khả năng lắng nghe, phân tích, từ đó đưa ra cách xử lý phù hợp.</td>
-        </tr>
-      </tbody></table>
-    </div>
-
-    <div class="contact-form fade-in">
-      <div class="container"></div>
-      <h2>Contact</h2>
-      <form>
-        <div class="form-group">
-          <label for="name">Your Name</label>
-          <input type="text" id="name" name="name" required="" />
-        </div>
-    
-        <div class="form-group">
-          <label for="email"> Your Email</label>
-          <input type="email" id="email" name="email" required="" />
-        </div>
-    
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" required=""></textarea>
-        </div>
-    
-        <button type="submit">Send Message</button>
-      </form>
-    </div>
-    
-
-    <div class="photo-gallery fade-in">
-      <h2>Photo Gallery</h2>
-      <img src="227.jpg" alt="Photo 1" />
-      <img src="229.jpg" alt="Photo 2" />
-      <img src="297.jpg" alt="Photo 3" />
-    </div>
-	<h1>My Social Media</h1>
-    <div class="social-links">
-      <a href="https://www.facebook.com/profile.php?id=100006412054523" target="_blank"><img src="Facebook.png" alt="Facebook" /></a>
-      <a href="https://www.instagram.com/dbinh_23/" target="_blank"><img src="Ins.jpeg" alt="Instagram" /></a>
-    </div>
-  </div>
-
-  
-<div style="text-align:right;position:fixed;z-index:9999999;bottom:0;width:auto;right:1%;cursor:pointer;line-height:0;display:block!important"><a title="Hosted on free web hosting 000webhost.com. Host your own website for FREE." target="_blank" href="https://www.000webhost.com/?utm_source=000webhostapp&amp;utm_campaign=000_logo&amp;utm_medium=website&amp;utm_content=footer_img"><img src="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost-white2.png" alt="www.000webhost.com" /></a></div><script>function getCookie(t){for(var e=t+"=",n=decodeURIComponent(document.cookie).split(";"),o=0;o<n.length;o++){for(var i=n[o];" "==i.charAt(0);)i=i.substring(1);if(0==i.indexOf(e))return i.substring(e.length,i.length)}return""}getCookie("hostinger")&&(document.cookie="hostinger=;expires=Thu, 01 Jan 1970 00:00:01 GMT;",location.reload());var wordpressAdminBody=document.getElementsByClassName("wp-admin")[0],notification=document.getElementsByClassName("notice notice-success is-dismissible"),hostingerLogo=document.getElementsByClassName("hlogo"),mainContent=document.getElementsByClassName("notice_content")[0];if(null!=wordpressAdminBody&&0<notification.length&&null!=mainContent){var googleFont=document.createElement("link");googleFontHref=document.createAttribute("href"),googleFontRel=document.createAttribute("rel"),googleFontHref.value="https://fonts.googleapis.com/css?family=Roboto:300,400,600,700",googleFontRel.value="stylesheet",googleFont.setAttributeNode(googleFontHref),googleFont.setAttributeNode(googleFontRel);var css="@media only screen and (max-width: 576px) {#main_content {max-width: 320px !important;} #main_content h1 {font-size: 30px !important;} #main_content h2 {font-size: 40px !important; margin: 20px 0 !important;} #main_content p {font-size: 14px !important;} #main_content .content-wrapper {text-align: center !important;}} @media only screen and (max-width: 781px) {#main_content {margin: auto; justify-content: center; max-width: 445px;}} @media only screen and (max-width: 1325px) {.web-hosting-90-off-image-wrapper {position: absolute; max-width: 95% !important;} .notice_content {justify-content: center;} .web-hosting-90-off-image {opacity: 1;}} @media only screen and (min-width: 769px) {.notice_content {justify-content: space-between;} #main_content {margin-left: 5%; max-width: 445px;} .web-hosting-90-off-image-wrapper {position: absolute; display: flex; justify-content: center; width: 50%; margin-left: 45%;}} .web-hosting-90-off-image {max-width: 90%;} .content-wrapper {min-height: 454px; display: flex; flex-direction: column; justify-content: center; z-index: 5} .notice_content {display: flex; align-items: center;} * {-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;} .upgrade_button_red_sale{box-shadow: 0 2px 4px 0 rgba(255, 69, 70, 0.2); width: 264px; border: 0; border-radius: 3px; background-color: #FF5C62 !important; padding: 15px 55px !important; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 600; color: #ffffff;} .upgrade_button_red_sale:hover{color: #ffffff !important; background: #d10303 !important;}",style=document.createElement("style"),sheet=window.document.styleSheets[0];style.styleSheet?style.styleSheet.cssText=css:style.appendChild(document.createTextNode(css)),document.getElementsByTagName("head")[0].appendChild(style),document.getElementsByTagName("head")[0].appendChild(googleFont);var button=document.getElementsByClassName("upgrade_button_red")[0],link=button.parentElement;link.setAttribute("href","https://www.hostinger.com/hosting-starter-offer?utm_source=000webhost&utm_medium=panel&utm_campaign=000-wp"),link.innerHTML='<button class="upgrade_button_red_sale">Claim Deal</button>',(notification=notification[0]).setAttribute("style","padding-bottom: 0; padding-top: 5px; background-color: #040713; background-size: cover; background-repeat: no-repeat; color: #ffffff; border-left-color: #040713;"),notification.className="notice notice-error is-dismissible";var mainContentHolder=document.getElementById("main_content");mainContentHolder.setAttribute("style","padding: 0;"),hostingerLogo[0].remove();var h1Tag=notification.getElementsByTagName("H1")[0];h1Tag.className="000-h1",h1Tag.innerHTML="Black Friday",h1Tag.setAttribute("style",'color: white; font-family: "Roboto", sans-serif; font-size: 48px; font-weight: 700;');var h2Tag=document.createElement("H2");h2Tag.innerHTML="Up to 90% off 4-year hosting plans + free domain, SSL & DDoS protection",h2Tag.setAttribute("style",'color: white; margin: 10px 0 15px 0; font-family: "Roboto", sans-serif; font-size: 16px; font-weight: 400; line-height: 1;'),h1Tag.parentNode.insertBefore(h2Tag,h1Tag.nextSibling);var paragraph=notification.getElementsByTagName("p")[0];paragraph.innerHTML="$<span style='font-size: 80px;'>2.49</span>/mo",paragraph.setAttribute("style",'font-family: "Roboto", sans-serif; font-size: 48px; font-weight: 700; margin: 0;');var list=notification.getElementsByTagName("UL")[0];list.remove();var org_html=mainContent.innerHTML,new_html='<div class="content-wrapper">'+mainContent.innerHTML+'</div><div class="web-hosting-90-off-image-wrapper"><img class="web-hosting-90-off-image" src="https://cdn.000webhost.com/000webhost/promotions/bf-2022-bottom-banner.png"></div>';mainContent.innerHTML=new_html;var saleImage=mainContent.getElementsByClassName("web-hosting-90-off-image")[0]}</script>
-</body></html>
+# Mini-presentation-Group-8
+Report of Mini presentation Group 8 
+
+1.	**Introduction**
++	Information about the NBA:
+NBA (National Basketball Association) was founded in 1946. NBA stands for National Basketball Association, i.e National Basketball Association. This is the world's leading professional basketball league, based in the United States and Canada.
+	With 30 teams divided into two conferences, the NBA is not only a place for athletes to compete but also a culture and a lifestyle. NBA matches always attract millions of spectators around the world, creating a community of passionate fans. 
+	NBA, not simply a sports league, but also a giant entertainment industry. From dramatic matches, beautiful plays to side stories, NBA always provides fans with great entertainment experiences. With the rise of social media, the NBA has become a global cultural phenomenon, connecting people from every country.
++	The main discussion point
+Finding and developing young talent is a vital factor for the longevity and development of the NBA. By constantly searching for future stars, the tournament not only ensures exciting competition but also creates inspiring stories that attract a large number of fans. Young talents bring new ideas and unique playing styles, helping to enrich basketball and maintain the tournament's appeal. At the same time, developing young players is also a way for the NBA to expand its global influence and build a strong basketball community.
+Based on data on the statistics of basketball players in the NBA since 1950, I want to bring to the attention of the managers of the basketball association the importance of finding and developing new young talents. This not only helps improve the competitiveness of the players but also brings a breath of fresh air to the basketball sport in general and attracts many interested fans whenever new talents are discovered.
+2.	Data discussion
+
+  ![image](https://github.com/user-attachments/assets/eac62cb0-7f7f-4eff-a8ae-1d16992d477a)
+
+
+ 
+2.1. Overview of data
+
++	Analyze columns
+In the data we can see that the data has 8 columns and 3922 rows based on the function “Print("Total of columns: ",df_iris.shape[1])” and “Print("Total of rows: ",df_iris.shape[0])”
+Based on the data table given above, from left to right, the first column is the player numbers and there are a total of 3922 players. The next column is the full name of the players, the next column is the height index and next to that is the column about the players' weight index. Next are the universities that the players attend. Indispensable are the year of birth columns and the cities where the players were born. Finally is the state the player was born in. For our group, there are 3 extremely important indicators in the table that contribute to making an excellent NBA player: the height index column, the school where the player studies and the city where the player was born. 
++	Which column is important to analyze?
+Look at the board NBA Players stats since 1950 We can see a lot of information about the players, and height in basketball is very important. The advantage of height can help them receive the ball more easily and defend more effectively. Height is often accompanied by other important characteristics of a basketball player, including arm reach and arm span, more Taller players often have more control over the aerial advantage, increasing the effectiveness of smashes and blocks. Besides, university is a factor - a place to train players with basic skills to play basketball. Universities have modern, well-equipped basketball courts, creating favorable conditions for students to practice and compete. Specialized training equipment and training support technology help improve athletes' skills. The city where the players live is also important. Big cities often organize many tournaments, giving players the opportunity to compete and develop skills. Training programs in big cities are often methodically and professionally designed. Big cities often have rich basketball cultures, exposing players to many different playing styles and strategies.
+
+2.2. Cleaning process
+	Our data cleaning process will be based on the following key factors:
++	Missing value
++	Duplicate value
++	Reality of data
+a)	Handling missing values
+In this data, we first use the function “Data.info” to check the data and notice that there are quite a few Null values, that is, missing values. Specifically, when using the function "df_iris.isna().sum()” specifically showed the null values as follows:
+
+![image](https://github.com/user-attachments/assets/6c516b2b-236f-4742-824e-4801f326a4d1)
+
+ 
+We used functions “Dataframe.dropna()” to handle the missing values of the columns and then those missing values disappeared in 7 columns of data. The output value gave us the following result:
+ 
+Additionally, In functions “Data.info”,  We also want to check the format of each column and see what the output is Dtype gave correct results.
+
+![image](https://github.com/user-attachments/assets/e4dbfb9d-5f7a-4cf8-9620-82dd9f8a39a0)
+
+
+We then use the function “Data.duplicated()” to check for possible duplicate data and handle duplicate data of each column, but the results show that there is no duplicate data:
+
+ ![image](https://github.com/user-attachments/assets/cb067a1e-0b18-47f4-98aa-90392bc6dce5)
+
+
+Next we want to check if the columns appear to be unique variables using the function:
+print("All unique variables in", x) 
+print(df_iris[x].value_counts()) 
+print("")
+and the results let us see that the columns are normal and do not have any special values.
+
+Finally we use the command “Df.describe” to check one last time after cleaning and now the data has been cleaned.
+
+3.	Chart discussion base on data
+3.1. Chart 1: Top 10 city with the most NBA’s Players
+
+ ![image](https://github.com/user-attachments/assets/6d55367e-a28b-4dab-9c71-d2096ec29370)
+
+
+Below are the "Top 10 cities with the most NBA players". We can easily see that Chicago has the highest number of NBA players with nearly 200. The chart shows a clear city trend. Big as Chicago is the birthplace of many NBA players. So we should focus on developing and finding talent in these cities. On the other hand, Los Angeles and Philadelphia also have a large number of people participating in the NBA with more than 80 people.
+
+ Investment in facilities Modern sports centers and training grounds will help develop skills and create conditions for young players to have better opportunities to practice and compete. Establishing high-quality training programs is important to encourage more young talent and help them develop further. In addition, opportunities such as tournaments, training camps and support from former players can also play an important part in building a foundation for basketball in Chicago. Furthermore, organize activities to invite famous and experienced players at the first meeting to share knowledge, experience and necessary skills and tactics in matches before entering the NBA and be recognized. Hosted by famous professional NBA players will attract many young talents, helping them improve their hard and soft skills. Moreover, the City of Los Angeles and Philadelphia should also be interested and keep an eye on potential young players here. 
+
+ That's why the NBA needs to invest heavily in the above factors so that players have the opportunity to develop and easily find potential young players.
+
+3.2. Chart 2: Top 10 college with the most NBA’s players
+
+ ![image](https://github.com/user-attachments/assets/24034085-ae9a-44b7-9f8b-58c53619d97f)
+
+
+The University of Kentucky and The University of California, Los Angeles (UCLA) have the highest number of alumni currently playing in the NBA with more than 80 players, which is far surpassing other universities on this list. This shows that we should focus on developing and seeking talents in these two  universities. Secondly, other universities in the top 10 are also well-known names in American college basketball and provide a significant amount of talent to the NBA. 
+In summary, this table shows that universities have students participating in the NBA. This indicates that the NBA is growing and becoming increasingly popular. One of the most effective ways for the NBA to scout for potential young talented players is to strengthen collaboration, mainly with the University of Kentucky and University of California. Establishing specialized training programs, supporting facilities, and organizing exchange events will help college players access the most modern knowledge and skills. Additionally, expanding the scouting network and applying modern technology in the talent evaluation process are also important factors for the NBA to seek and discover future stars. On the other hand, other universities may have numerous potential players so we should also keep an eye on them. 
+To create more opportunities for scouting potential young players, the NBA could consider Providing scholarships and financial support for potential young players, helping them focus on training and developing their skills to the maximum. Furthermore, connecting young players with former NBA stars and experienced coaches for professional and spiritual guidance and advice is quite necessary to reinforce what they need when enter the NBA arena.
+
+3.3 Chart 3: NBA players height
+ ![image](https://github.com/user-attachments/assets/eab44e31-e222-477d-8755-dca1a35dbe9e)
+
+
+
+
+The histogram chart of NBA player heights shows that the ideal height ranges from 185cm to 210cm. The red line in the chart represents an average height of about 200cm. Based on that, the NBA should focus on finding young talents in this height group, for example by organizing selections at high schools and universities. However, players with different heights should not be ignored. For shorter players, attention should be paid to their speed, technique and ability to handle the ball, for example by observing their skills in youth tournaments. On the contrary, for players over 210cm tall, the NBA should focus on arm span, jumping ability and movement. Height is a huge advantage for basketball players and this is a factor that cannot be ignored. Height helps players be able to develop and adapt well in all elements of the game. We suggest that the NBA needs to pay attention to height first, specifically looking for young players with an average height of 185cm to 210cm. Additionally, the NBA could establish youth player development programs that focus on nutrition, training and other factors that can promote healthy height growth.  Cooperate with  nutrition and sports experts to develop scientific diet and exercise regimens for young players. The NBA can also organize summer basketball camps, giving young players access to a professional training environment, thereby optimizing their development potential.
+
+
+
+
+4.	Conclusion 
+
+Finding and nurturing young talent is an important, long-term strategic task for the development of any field, especially in professional sports like basketball. Investing in the young generation not only helps leagues like the NBA maintain their attractiveness and competitiveness, but also contributes to promoting the overall development of the sports industry. Discovering and nurturing young talents early is to create a solid foundation for the future, ensuring inheritance and sustainable development. By combining traditional methods with modern technology, focusing on human factors and building a comprehensive development environment, we can create favorable conditions for young talents to maximize their potential. potential, reach its peak and contribute to the overall development of the community.
+
+
+	
